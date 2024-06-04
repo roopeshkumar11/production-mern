@@ -10,9 +10,19 @@ app.set("views engine","ejs")
 app.set("views",path.join(__dirname,"views"))
 app.use(express.urlencoded({extended:true}))
 const methodOverride=require("method-override")
+const ejsmate=require("ejs-mate")
+
+
+const wrapAsync=require("./untils/wrapAsync.js")
+const ExpressError=require("./untils/Express.js")
+const {listingschema}=require("./Scehma.js")
+
 
 app.use(methodOverride("_method"))
+app.use(express.static(path.join(__dirname,"/public")))
 
+
+app.engine("ejs",ejsmate) 
 main()
 .then(()=>{
     console.log("connect to DB")
@@ -29,6 +39,17 @@ app.get("/",(req,res)=>{
     res.send("Hey ! i am root")
 })
 
+
+const validateListing=(req,res,next)=>{
+    let {error}=listingschema.validate(req.body)
+    if(error){
+        let errmsg=error.details.map((el)=>el.message).join(",")
+        throw new ExpressError(404,result.errmsg)
+    }
+    else{
+        next()
+    }
+}
 
 // app.get("/testlisting", async (req,res)=>{
 //     let smpaleListing = new Listing({
@@ -69,14 +90,15 @@ app.get("/listings", async (req,res)=>{
  })
 
 // create route
-app.post("/listings" ,async (req,res)=>{
-    const newlist=new Listing(req.body.listing)
-
-   await newlist.save()
-   console.log(newlist)
-  
-    res.redirect("/listings")
-})
+app.post("/listings" ,validateListing,wrapAsync(async (req,res,next)=>{
+  const newlist=new Listing(req.body.listing)
+       await newlist.save()
+        console.log(newlist)
+       
+         res.redirect("/listings")
+}
+)
+)
 
 // edit
 app.get("/listings/:id/edit",async (req,res)=>{
@@ -86,11 +108,12 @@ app.get("/listings/:id/edit",async (req,res)=>{
 })
 //upadte
 
-app.put("/listings/:id", async (req,res)=>{
-    let  {id}=req.params
+app.put("/listings/:id",validateListing, wrapAsync(async (req,res)=>{
+  let  {id}=req.params
     await Listing.findByIdAndUpdate(id,{...req.body.listing})
-    res.redirect("/listings")
-})
+    res.redirect("/listings");
+
+}))
 
 
 app.delete("/listings/:id", async (req,res)=>{
@@ -99,6 +122,15 @@ app.delete("/listings/:id", async (req,res)=>{
     res.redirect("/listings")
     console.log(deletelisted)
 
+})
+app.all("*",(req,res,next)=>{
+    next(new ExpressError(404,"Page not Found"))
+})
+
+app.use((err,req,res,next)=>{  //handle error / middleware
+   let {statusCode,message}=err
+    res.render("error.ejs",{message})
+    // res.status(statusCode).send(message)
 })
 let port= 8080
 app.listen(port,()=>{{
