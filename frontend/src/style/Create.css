@@ -1,0 +1,13 @@
+.main-form   {
+    width: 40%;
+
+    padding: 20px;
+    border-radius: 10px;
+ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: auto !important;
+}
+.btn-submit{
+    
+  margin-top: 10px;
+    width: 100%;
+}

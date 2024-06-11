@@ -1,0 +1,15 @@
+.card{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+   
+    height: 14rem;
+}
+.btn-show{
+    display: flex;
+    justify-content: space-around;
+    
+    
+    
+}
+.see{
+    width: 90px;
+}

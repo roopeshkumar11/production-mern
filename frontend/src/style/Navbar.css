@@ -1,0 +1,21 @@
+.navbar-nav{
+   
+  
+  
+    
+   
+    /* position: absolute;
+    right: 80px;
+     */
+    font-size: 18px;
+    font-weight: 400;
+    padding:20px !important ;
+    padding-right: 40px !important;
+   
+    color: black;
+}
+
+.head{
+    font-weight: bold !important;
+    font-size: 22px !important;
+}
