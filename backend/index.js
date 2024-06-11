@@ -6,7 +6,7 @@ const cors=require("cors")
 const app=express()
 app.use(express.json())
 app.use(cors()); 
-
+const PORT=process.env.PORT || 8080
 
 
 
@@ -75,6 +75,6 @@ app.delete("/see/:id",async (req,res)=>{
 })
 
 
-app.listen(8080,()=>{
+app.listen(PORT,()=>{
     console.log("port is listen 8080")
 })
