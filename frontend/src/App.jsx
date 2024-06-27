@@ -12,11 +12,13 @@ import Seepost from './componenet/Seepost';
 import Login from './componenet/Login';
 import Signup from './componenet/Signup';
 import { useAuth } from './context/contextapi';
+import axios from "axios"
 
 
 
 
 function App() {
+  axios.defaults,withCredentials=true
   const [authuser,setauthuser]=useAuth()
   return (
    
