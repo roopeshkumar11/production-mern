@@ -13,7 +13,7 @@ function Signup() {
 
     const handleButton=(event)=>{
         event.preventDefault();
-        axios.post("production-mern-amber.vercel.app/user",{name,email,password})
+        axios.post("https://production-mern-amber.vercel.app/user",{name,email,password})
         .then((response)=>{
             console.log(response)
            
