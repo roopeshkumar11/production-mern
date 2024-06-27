@@ -12,7 +12,7 @@ function Show() {
   
 
   useEffect(()=>{
-    axios.get("production-mern-amber.vercel.app/show")
+    axios.get("https://production-mern-amber.vercel.app/show")
     .then((reponse)=>{
       
       setdata(reponse.data)
