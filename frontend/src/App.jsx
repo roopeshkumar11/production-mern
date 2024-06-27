@@ -18,7 +18,7 @@ import axios from "axios"
 
 
 function App() {
-  axios.defaults,withCredentials=true
+  axios.defaults.withCredentials=true
   const [authuser,setauthuser]=useAuth()
   return (
    
