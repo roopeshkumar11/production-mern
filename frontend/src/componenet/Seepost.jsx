@@ -16,7 +16,7 @@ function Seepost() {
   console.log(id)
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/see/${id}`)
+    axios.get(`production-mern-amber.vercel.app/see/${id}`)
       .then((response) => {
         setData(response.data);
         // console.log(response.data)
