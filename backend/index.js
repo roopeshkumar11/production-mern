@@ -8,7 +8,11 @@ const dotenv =require("dotenv")
 dotenv.config()
 const app=express()
 app.use(express.json())
-app.use(cors()); 
+app.use(cors({
+    origin:["https://production-mern-2l67frontend.vercel.app/"],
+    methods:["POST","GET"],
+    credentials:true
+})); 
 const PORT=process.env.PORT || 4001
 const URI=process.env.MonogoDBURI
 
