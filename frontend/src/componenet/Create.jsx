@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import axios from 'axios';
 import "../style/Create.css"
 import { useNavigate } from 'react-router-dom';
+import Footer from './Footer';
 
 function Create() {
   const [title, setTitle] = useState('');
@@ -21,15 +22,17 @@ function Create() {
       .catch((error) => {
         console.log('There was an error!', error);
       });
-
+      
       navigate("/show")
+      window.location.reload();
+  
   };
   
 
   return (
     <>
       <Navbar />
-      <h1 className='text-center m-4'>Create Post</h1>
+      <h1 className='text-center m-4 main-create'>Create Post</h1>
       <form className="m-4 main-form " onSubmit={handleButton}  >
         <div className="mb-3  ">
           <label htmlFor="title" className="form-label">Title</label>
@@ -53,6 +56,7 @@ function Create() {
         </div>
         <button type="submit" className="btn btn-primary btn-submit ">Submit</button>
       </form>
+      <Footer/>
     </>
   );
 }

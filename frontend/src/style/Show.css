@@ -1,3 +1,4 @@
+
 .card{
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
    
@@ -12,4 +13,25 @@
 }
 .see{
     width: 90px;
+}
+
+@media only screen and (max-width: 600px){
+.main-show{
+    width: 100%;
+    margin: 0 !important;
+  
+   
+ 
+}
+.show-row{
+    width: 100%;
+    margin: auto !important;
+    
+  
+}
+.show-item {
+    width: 100% !important;
+    margin: auto !important;
+    margin-top: 15px !important;
+}
 }

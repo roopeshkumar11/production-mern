@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'; // Import useNavigate
 import Navbar from './Navbar';
 import axios from 'axios';
 import "../style/Create.css";
+import Footer from './Footer';
 
 function Update() {
   const { id } = useParams();
@@ -44,7 +45,7 @@ function Update() {
   return (
     <>
       <Navbar />
-      <h1 className='text-center m-4'>Update Post</h1>
+      <h1 className='text-center m-4 '>Update Post</h1>
       <form className="m-4 main-form" onSubmit={handleButton}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">Title</label>
@@ -68,6 +69,7 @@ function Update() {
         </div>
         <button type="submit" className="btn btn-primary btn-submit">Submit</button>
       </form>
+      <Footer/>
     </>
   );
 }

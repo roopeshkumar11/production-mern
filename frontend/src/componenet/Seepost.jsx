@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import axios from 'axios';
 import { useParams ,useNavigate} from 'react-router-dom';
 import "../style/seepost.css"
+import Footer from './Footer';
 
 
 
@@ -30,6 +31,7 @@ function Seepost() {
   .then((reponse)=>{
    
     console.log("delete",reponse)
+    window.location.reload();
 
  
 
@@ -39,8 +41,8 @@ function Seepost() {
 
   return (
     <>
-      <Navbar>
-        <div className="container mt-5 " >
+      <Navbar/>
+        <div className="container mt-5  " >
           <div className="row  col-7 col-md-4  col-sm-4  contain mt-5 " >
             {
               <div className="card  m-4  " style={{ width: "22rem" }}>
@@ -55,7 +57,7 @@ function Seepost() {
             }
           </div>
         </div>
-      </Navbar>
+     <Footer/>
     </>
   );
 }

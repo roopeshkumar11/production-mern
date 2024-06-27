@@ -4,28 +4,32 @@ import Navbar from './Navbar'
 import axios from 'axios'
 import "../style/Show.css"
 import { Link } from 'react-router-dom'
+import { useAuth } from '../context/contextapi'
+import Footer from './Footer'
 function Show() {
 
   const [data,setdata]=useState([])
+  
 
   useEffect(()=>{
     axios.get("http://localhost:8080/show")
     .then((reponse)=>{
+      
       setdata(reponse.data)
         console.log(reponse.data)
       
     })
   },[])
-  
+ 
   return (
  
-    <><Navbar>
+    <><Navbar/>
 
-<div className="container mt-4 offset-1   " >
-<div className="row ">
+<div className="container mt-4 offset-1 main-show    " >
+<div className="row  show-row">
  
       {data.map(item=>(
-       <div className="card col-12 col-md-4 m-4" style={{width: "22rem"}}>
+       <div className="card col-12 col-md-4 m-4  show-item " style={{width: "22rem"}}>
        {/* <img src="..." className="card-img-top" alt="..."/> */}
        <div className="card-body">
          <h5 className="card-title">{item.title}</h5>
@@ -48,7 +52,7 @@ function Show() {
       ))
 }</div></div>
 
-    </Navbar></>
+   <Footer/></>
   )
 }
 

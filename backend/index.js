@@ -2,17 +2,23 @@ const express=require("express")
 const {mongoose } = require("mongoose")
 const ThoughtSchemaModel=require("./model/Schema")
 const cors=require("cors")
+const User = require("./model/user")
+const dotenv =require("dotenv")
 
+dotenv.config()
 const app=express()
 app.use(express.json())
 app.use(cors()); 
-const PORT=process.env.PORT || 8080
+const PORT=process.env.PORT || 4001
+const URI=process.env.MonogoDBURI
 
 
 
 
 
-mongoose.connect("mongodb://127.0.0.1:27017/Thoughtdata")
+
+mongoose.connect(URI)
+console.log(URI)
 
 app.post("/create",(req,res)=>{
     ThoughtSchemaModel.create(req.body)
@@ -71,10 +77,37 @@ app.delete("/see/:id",async (req,res)=>{
   let {id}=req.params
   console.log(id)
  let post= await ThoughtSchemaModel.findByIdAndDelete(id)
- console.log("delete",post)
+//  console.log("delete",post)
 })
 
+app.post("/user", async (req,res)=>{
+  let user=await User.create(req.body)
+  console.log("userr",user)
+})
+app.post("/loginuser", async (req,res)=>{
+let {email,password}=req.body
+const founddata= await User.findOne({email:email})
+.then((reponse)=>{
+  console.log(reponse)
+  
+    if(reponse){
+      if(reponse.password===password){
+        res.json("success")
+       
+      }
+      else{
+        res.json("incorrect password")
+      }
+    }
+
+    else{
+      res.json("not record")
+      console.log("not find")
+    }
+})
+
+})
 
 app.listen(PORT,()=>{
-    console.log("port is listen 8080")
+    console.log("port is listen ",PORT)
 })

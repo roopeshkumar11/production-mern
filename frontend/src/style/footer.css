@@ -1,0 +1,9 @@
+.icon-conten{
+ 
+    display: flex;
+ font-size: 25px !important;
+padding-bottom: 15px;
+    justify-content: center;
+    gap: 20px;
+   
+}

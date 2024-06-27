@@ -1,3 +1,9 @@
+.main-home{
+    margin-top: 8%;
+    height: 48vh;
+  
+    
+}
 .text-thought{
  
     width:50%;
@@ -11,8 +17,21 @@
     margin-top: 20px;
    align-items: center;
   
-   margin-left: 40%;
-   padding: 10px !important;
+   margin-left: 45%;
+   padding: 12px !important;
 
+}
+
+@media only screen and (max-width: 600px){
+    .btn-create{
+        margin-left: 35%;
+    }
+    .main-home{
+        height: 100%;
+       
+    }
+    .content-home{
+        width: 80%;
+    }
 }
 
