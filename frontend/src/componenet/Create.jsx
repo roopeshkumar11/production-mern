@@ -15,7 +15,7 @@ function Create() {
     event.preventDefault();
 
     
-    axios.post('http://localhost:8080/create', {title,thought})
+    axios.post('production-mern-amber.vercel.app/create', {title,thought})
       .then((response) => {
         console.log('Response:', response);
       })
